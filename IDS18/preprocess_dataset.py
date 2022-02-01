@@ -47,8 +47,9 @@ def main():
     for dirname, _, filenames in os.walk('data'):
          for filename in filenames:
              data_files.append(os.path.join(dirname, filename))
-
-    df = reduce_mem_usage(pd.read_csv(data_files[3],low_memory=False,index_col=False,usecols=[i for i in range(4,84)]))
+    
+    fpfi = data_files.index("data/02-20-2018.csv")  # first_preprocessing_file_index
+    df = reduce_mem_usage(pd.read_csv(data_files[fpfi],low_memory=False,index_col=False,usecols=[i for i in range(4,84)]))
     print(df.dtypes)
     dtypes = df.dtypes.to_dict()
     columns = df.columns.tolist()
